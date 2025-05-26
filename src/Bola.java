@@ -13,8 +13,8 @@ public class Bola {
     public Bola(int x, int y){
         this.x = x;
         this.y = y;
-        this.altura_bola = 3;
-        this.largura_bola = 3;
+        this.altura_bola = 4;
+        this.largura_bola = 4;
 
         CalcularAnguloDeslocamento();
     }
