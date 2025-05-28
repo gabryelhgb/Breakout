@@ -41,16 +41,32 @@ public class InterfaceJogo {
     }
 
     public void desenharInformacoes(Graphics g) {
-        g.setColor(Color.white);
-        g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Vidas: " + vidas, 10, 20);
-        g.drawString("Pontuação: " + pontuacao, 90, 20);
-        g.drawString("Tempo: " + segundos + "s", 180, 20);
+    int baseY = Jogo.ALTURA - 5;
 
-        if (jogoAcabou()) {
-            g.setColor(Color.red);
-            g.setFont(new Font("Arial", Font.BOLD, 24));
-            g.drawString("FIM DE JOGO", 50, 150);
+    //Fonte e cor
+    g.setColor(Color.white);
+    g.setFont(new Font("Arial", Font.PLAIN, 10));
+
+    //Texto na tela
+    g.drawString("Vidas: " + vidas, 20, baseY);
+    g.drawString("Pontuação: " + pontuacao, 85, baseY); 
+    g.drawString("Tempo: " + segundos + "s", 170, baseY);
+
+    //Coração vermelho na esquerda de Vida
+    g.setColor(Color.red);
+    int x = 5;
+    int y = baseY - 8;
+
+    int[] xPoints = {x + 4, x, x - 4, x, x + 4, x + 8, x + 12, x + 8};
+    int[] yPoints = {y, y - 4, y, y + 4, y + 8, y + 4, y, y - 4};
+    g.fillPolygon(xPoints, yPoints, xPoints.length);
+
+    //Fim de jogo
+    if (jogoAcabou()) {
+        g.setColor(Color.red);
+        g.setFont(new Font("Arial", Font.BOLD, 24));
+        g.drawString("FIM DE JOGO", 50, 150);
         }
     }
+
 }
