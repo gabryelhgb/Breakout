@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Jogo extends Canvas implements KeyListener, Runnable {
 
@@ -18,8 +19,9 @@ public class Jogo extends Canvas implements KeyListener, Runnable {
 
     public static RaqueteJogador objetoRaqueteJogador;
     public static Bola objetoBola;
+    public static ArrayList<Bloco> blocos;
 
-    // Adicionado: objeto da interface do jogo (vidas, pontos, tempo)
+    // Adicionando interface do jogo (vidas, pontos, tempo)
     public static InterfaceJogo interfaceJogo;
 
     public Jogo() {
@@ -29,6 +31,30 @@ public class Jogo extends Canvas implements KeyListener, Runnable {
         objetoRaqueteJogador = new RaqueteJogador(100, ALTURA - 30);
         objetoBola = new Bola(100, ALTURA / 2 - 1);
         interfaceJogo = new InterfaceJogo();
+
+        //Instanciando blocos na tela
+        blocos = new ArrayList<>();
+
+        int linhas = 4;
+        int colunas = 7;
+        int largura = 30;
+        int altura = 10;
+        int espacamento = 5;
+
+        int totalLargura = colunas * (largura + espacamento) - espacamento;
+        int margemLateral = (Jogo.LARGURA - totalLargura) / 2;
+        int margemSuperior = 20;
+
+        Color[] cores = {Color.red, Color.orange, Color.yellow, Color.green};
+
+        for (int i = 0; i < linhas; i++) {
+            for (int j = 0; j < colunas; j++) {
+                int x = margemLateral + j * (largura + espacamento);
+                int y = margemSuperior + i * (altura + espacamento);
+                Color cor = cores[i % cores.length]; // Cores cíclicas por linha
+                blocos.add(new Bloco(x, y, largura, altura, cor));
+            }
+        }
 
         // Adicionar manipulador de eventos (leitura do teclado)
         this.addKeyListener(new InterrupcaoTeclado(objetoRaqueteJogador));
@@ -70,6 +96,10 @@ public class Jogo extends Canvas implements KeyListener, Runnable {
 
         objetoRaqueteJogador.Desenhar(g);
         objetoBola.Desenhar(g);
+        //Desenhando blocos
+        for (Bloco bloco : blocos) {
+            bloco.desenhar(g);
+        }
 
         // Desenhar HUD com vidas, pontos e cronômetro
         interfaceJogo.desenharInformacoes(g);
