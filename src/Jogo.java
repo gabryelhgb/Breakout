@@ -122,7 +122,7 @@ public class Jogo extends Canvas implements KeyListener, Runnable {
             DesenharJogoNaTela();
 
             // Parar loop se o jogo acabou
-            if (interfaceJogo.jogoAcabou()) {
+            if (interfaceJogo.jogoAcabou() || todosBlocosDestruídos()) {
                 interfaceJogo.pararTemporizador();
                 break;
             }
@@ -134,6 +134,16 @@ public class Jogo extends Canvas implements KeyListener, Runnable {
             }
         }
     }
+
+    public boolean todosBlocosDestruídos() {
+        for (Bloco bloco : blocos) {
+            if (bloco.visivel) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     @Override
     public void keyTyped(KeyEvent e) {}

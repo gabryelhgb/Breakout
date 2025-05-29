@@ -62,10 +62,14 @@ public class InterfaceJogo {
     g.fillPolygon(xPoints, yPoints, xPoints.length);
 
     //Fim de jogo
-    if (jogoAcabou()) {
-        g.setColor(Color.red);
-        g.setFont(new Font("Arial", Font.BOLD, 24));
-        g.drawString("FIM DE JOGO", 50, 150);
+        if (jogoAcabou()) {
+            g.setColor(Color.red);
+            g.setFont(new Font("Arial", Font.BOLD, 24));
+            g.drawString("FIM DE JOGO", 50, 150);
+        }else if (Jogo.blocos != null && Jogo.blocos.stream().noneMatch(b -> b.visivel)) {
+            g.setColor(Color.green);
+            g.setFont(new Font("Arial", Font.BOLD, 24));
+            g.drawString("VOCÊ VENCEU!", 40, 150);
         }
     }
 
