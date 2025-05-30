@@ -17,7 +17,7 @@ public class Jogo extends Canvas implements KeyListener, MouseListener, Runnable
     // Declarando constantes e objetos do jogo
     public static int LARGURA = 235;
     public static int ALTURA = 290;
-    public static int ESCALA = 3;
+    public static int ESCALA = 2;
 
     public BufferedImage TelaDoJogo = new BufferedImage(LARGURA, ALTURA, BufferedImage.TYPE_INT_RGB);
 
