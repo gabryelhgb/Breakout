@@ -64,17 +64,13 @@ java Main
 
 ## 💡 Próximos passos (ideias de melhoria)
 
-- Adicionar pontuação
-- Criar níveis com blocos
-- Inserir efeitos sonoros
 - Colisões mais realistas (ângulos)
-- Sistema de vidas
 
 ---
 
 ## 🧑‍💻 Autor
 
-Projeto desenvolvido por **Gabryel Henrik**, como parte de estudos em Java e aplicação de pensamento lógico com interfaces gráficas.
+Projeto desenvolvido por **Gabryel Henrik** e **Felipe Mendes**, como parte de estudos em Java e aplicação de pensamento lógico com interfaces gráficas.
 
 ---
 
