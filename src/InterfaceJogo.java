@@ -9,7 +9,7 @@ import javax.swing.Timer;
 public class InterfaceJogo {
     private int vidas = 3;
     private int pontuacao = 0;
-    private int segundos = 0;
+    public int segundos = 0;
 
     private Timer temporizador;
 
@@ -48,13 +48,13 @@ public class InterfaceJogo {
     g.setFont(new Font("Arial", Font.PLAIN, 10));
 
     //Texto na tela
-    g.drawString("Vidas: " + vidas, 20, baseY);
-    g.drawString("Pontuação: " + pontuacao, 85, baseY); 
-    g.drawString("Tempo: " + segundos + "s", 170, baseY);
+    g.drawString("Vidas: " + vidas, 21, baseY);
+    g.drawString("Pontuação: " + pontuacao, 83, baseY); 
+    g.drawString("Tempo: " + segundos + "s", 172, baseY);
 
     //Coração vermelho na esquerda de Vida
     g.setColor(Color.red);
-    int x = 5;
+    int x = 6;
     int y = baseY - 8;
 
     int[] xPoints = {x + 4, x, x - 4, x, x + 4, x + 8, x + 12, x + 8};
@@ -65,11 +65,11 @@ public class InterfaceJogo {
         if (jogoAcabou()) {
             g.setColor(Color.red);
             g.setFont(new Font("Arial", Font.BOLD, 24));
-            g.drawString("FIM DE JOGO", 50, 150);
+            g.drawString("FIM DE JOGO", 40, 150);
         }else if (Jogo.blocos != null && Jogo.blocos.stream().noneMatch(b -> b.visivel)) {
             g.setColor(Color.green);
             g.setFont(new Font("Arial", Font.BOLD, 24));
-            g.drawString("VOCÊ VENCEU!", 40, 150);
+            g.drawString("VOCÊ VENCEU!", 26, 150);
         }
     }
 

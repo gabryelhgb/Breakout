@@ -1,7 +1,10 @@
 //importando as bibliotecas
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.concurrent.Semaphore;
+import javax.imageio.ImageIO;
 
 public class RaqueteJogador {
     //Declarando os atributos
@@ -9,6 +12,7 @@ public class RaqueteJogador {
     public int x, y;
     public int largura_raquete, altura_raquete;
     public Semaphore Mutex;
+    private BufferedImage imagemRaquete;
 
     //Construtor da raquete
     public RaqueteJogador(int x, int y){
@@ -16,7 +20,13 @@ public class RaqueteJogador {
         this.y = y;
         this.largura_raquete = 40;
         this.altura_raquete = 5;
-        Mutex = new Semaphore(1); 
+        Mutex = new Semaphore(1);
+
+        try {
+            imagemRaquete = ImageIO.read(getClass().getResource("/images/Prancha.png"));
+        } catch (IOException | IllegalArgumentException e) {
+            imagemRaquete = null; // Se não encontrar, usa o desenho padrão
+        }
     }
 
     //Método para fazer a raquete mexer
@@ -46,10 +56,14 @@ public class RaqueteJogador {
     }
 
     public void Desenhar (Graphics g){
-        //setar a cor da raquete
-        g.setColor(Color.white);
-        //Desenhar o retangulo que representa a raquete
-        g.fillRect(x, y, largura_raquete, altura_raquete);
+        if (imagemRaquete != null) {
+            g.drawImage(imagemRaquete, x, y, largura_raquete, altura_raquete, null);
+        } else {
+            //setar a cor da raquete
+            g.setColor(Color.white);
+            //Desenhar o retangulo que representa a raquete
+            g.fillRect(x, y, largura_raquete, altura_raquete);
+        }
     }
 
 }

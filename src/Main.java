@@ -20,10 +20,11 @@ public class Main extends JFrame {
         SwingUtilities.invokeLater(() -> {
             janelaprincipal.toFront();
             janelaprincipal.requestFocus();
-            game.requestFocusInWindow(); // << dá o foco ao Canvas
+            game.requestFocusInWindow(); // << dá o foco a janela
         });
 
 
         new Thread(game).start();
+        Som.tocarMusicaFundo("musica.wav");
     }
 }
